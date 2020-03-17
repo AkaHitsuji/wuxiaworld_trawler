@@ -10,8 +10,8 @@ def get_book(url_link):
     page = requests.get(url_link).text
     soup = BeautifulSoup(page, 'html.parser')
 
-    chapters_soup = soup.find("div", class_="p-15")
-    book_title = chapters_soup.find("h4").text
+    chapters_soup = soup.find("div", class_="tabbable light")
+    book_title = soup.find("h2").text
     book_path = os.path.join(cwd,book_title)
     create_book_folder(book_path)
 
@@ -54,6 +54,7 @@ def generate_chapter_list(chapters_soup,cache_path,novel_name):
         for a in chapters_soup.find_all('a', href=re.compile("novel/"+ novel_name)):
             chapter_title = a.text
             chapter_title = chapter_title.lstrip().rstrip()
+            chapter_title = re.sub(r'[\\/*?:"<>|’]',"",chapter_title)
             chapter_tuple = (chapter_title, a['href'])
             list_chapterUrls.append(chapter_tuple)
 
@@ -91,6 +92,7 @@ def download_chapter(novel_link,url_link,storage_path):
 
     # get chapter title
     chapter_title = soup.find("img", {"src": '/images/title-icon.png'}).find_next_sibling().text.lstrip().rstrip()
+    chapter_title = re.sub(r'[\\/*?:"<>|’]',"",chapter_title)
 
     # get chapter content
     chapter_content = soup.find(id="chapter-content")

@@ -20,7 +20,7 @@ def createbook(book_path):
     cache_path = os.path.join(book_path,"chapter_list.txt")
     list_chapters = []
     if os.path.exists(cache_path):
-        f = open(cache_path, "r")
+        f = open(cache_path, "r", encoding="utf8")
         lines = f.readlines()
         for line in lines:
             title = line.split("_:_")[0]
