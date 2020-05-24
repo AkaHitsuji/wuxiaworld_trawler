@@ -33,5 +33,17 @@ To generate the ePub, run the following line
 python create_ebook.py --book [book_name]
 ```
 
+If you wish to update your previously downloaded folder with the latest chapters, run the following line:
 
-### Work in progress
+```
+python download.py --url [url_link] --start [the chapter number you wish to start downloading from]
+```
+for example if the last time I trawled till chapter 366, then the next time I run the code I will want to trawl from chapter 367 onwards, thus the commands to run will be the following:
+```
+python download.py --url [url_link] --start 367
+```
+
+If you have moved your previously trawled folder to another file location, pass in the file location as a path parameter
+```
+python download.py --url [url_link] --path [file path to existing trawled folder]
+```
