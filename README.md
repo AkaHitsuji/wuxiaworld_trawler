@@ -33,6 +33,19 @@ To generate the ePub, run the following line
 python create_ebook.py --book [book_name]
 ```
 
+### List of commands
+For download.py:
+-V or --version || show program version
+-U or --url || takes in novel url as a parameter
+-S or --start || start downloading from this chapter number
+-P or --path || file path to save wuxia novel  
+
+For create_ebook.py:
+-V or --version || show program version
+-B or --book || takes in book name
+-P or --path || file path to save wuxia novel  
+
+### Examples with parameters
 If you wish to update your previously downloaded folder with the latest chapters, run the following line:
 
 ```
@@ -44,6 +57,13 @@ python download.py --url [url_link] --start 367
 ```
 
 If you have moved your previously trawled folder to another file location, pass in the file location as a path parameter
+
 ```
 python download.py --url [url_link] --path [file path to existing trawled folder]
+```
+
+If you have shifted the folder of trawled chapters to a different file path
+
+```
+python create_ebook.py --book [book_name] --path [new file path location]
 ```
