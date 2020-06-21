@@ -1,9 +1,13 @@
 import os
 from ebooklib import epub
+from sys import platform
 
 def createbook(book_path):
     book = epub.EpubBook()
-    book_title = book_path.split("/")[-1]
+    if platform == "linux" or platform == "linux2" or platform == "darwin":
+        book_title = book_path.split("/")[-1]
+    elif platform == "win32":
+        book_title = book_path.split("\\")[-1]
 
     # set metadata
     book.set_identifier('id123456')
