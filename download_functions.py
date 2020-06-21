@@ -32,10 +32,22 @@ def get_book(url_link,start_chapter,book_path):
         for title, link in list_chapterUrls:
             download_chapter(url_link,link,book_path)
     else:
+        if len(list_chapterUrls) < start_chapter:
+            lastChapter = get_last_chapter_number(list_chapterUrls[-1][1])
+            startIndex = lastChapter - start_chapter
+            startIndex = list_chapterUrls.index(list_chapterUrls[-startIndex])
+            start_chapter = startIndex + 1
+
         for title, link in list_chapterUrls[start_chapter-1:]:
+            print(title,link)
             download_chapter(url_link,link,book_path)
 
     print("Book downloaded! Thank you for using the code Akahitsuji wrote :)")
+
+def get_last_chapter_number(url):
+    lastelement = url.split("/")[-1]
+    chapNum = lastelement.split("-")[-1]
+    return int(chapNum)
 
 def create_book_folder(path):
     if os.path.exists(path):
