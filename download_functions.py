@@ -119,10 +119,11 @@ def download_chapter(novel_link,url_link,storage_path):
     else:
         # get chapter content
         chapter_content = soup.find(id="chapter-content")
-        chapter_content = chapter_content.get_text(separator='\n\n')
-        chapter_content = chapter_content.replace("Previous Chapter", "").replace("Next Chapter", "")
-        chapter_content = chapter_content.lstrip().rstrip()
+        chapter_content = chapter_content.find_all("p")
+        content = ""
+        for c in chapter_content:
+            content += c.text.strip() + "\n\n"
 
         with open(chapter_path, 'w', encoding="utf8") as handler:
-            handler.write(chapter_content)
+            handler.write(content)
         print(chapter_title + " downloaded")
